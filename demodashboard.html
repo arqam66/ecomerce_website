@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Dashboard</title>
+
+  <style>
+*{
+
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+font-family:"Lato", sans-serif;
+
+}
+
+
+
+.modal-content {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  /* padding: 20px; */
+  width: 75%;
+  margin: 40px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  background-color: rgb(255, 136, 0);
+  text-align: center;
+  position: relative;
+
+}
+
+.cross {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  color: white;
+  font-weight: bolder;
+}
+
+.modal-header .modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  
+}
+
+.product-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.product-details {
+  padding-left: 20px;
+}
+
+.product-name {
+  font-size: 1rem;
+  color: #1a1a1a;
+  line-height: 1.4rem;
+}
+
+.product-extra-details {
+  padding-left: 20px;
+}
+
+.col-md-6 p {
+  padding-block: 10px;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.btn-secondary {
+  background-color: #ff640a;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  font-size: 1rem;
+  /* border-radius: 5px; */
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: #d94500;
+}
+
+.btn-primary {
+  background-color: #ff5e00;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  font-size: 1rem;
+  /* border-radius: 5px; */
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #d94500;
+}
+
+.modal-body .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+}
+
+.modal-body .row .col-md-4 {
+  flex-basis: 30%;
+}
+
+.modal-body .row .col-md-6 {
+  flex-basis: 47%;
+  font-size: 0.8rem;
+}
+
+
+
+  </style>
+
+</head>
+<body>
+<!-- 
+  <div class="add-to-cart-box">
+    <div class="product-image">
+      <img src="product-image.jpg" alt="Product Image">
+    </div>
+    <div class="product-details">
+      <h2>Product Name</h2>
+      <p>Product Description</p>
+      <p>Price: $10.99</p>
+    </div>
+    <div class="add-to-cart-button">
+      <button>Add to Cart</button>
+    </div>
+  </div> -->
+
+  <!-- <div class="mainAddTOCarts">
+    <div class="cartImg">
+      <img src="https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg" width="200px" alt="...">
+    </div>
+    
+      <div class="card-body">
+      <h5 >MBJ Women's Solid Short Sleeve Boat Neck V </h5>
+      <p >95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem</p>
+      <span class="cartPrice">200</span>
+      <h3><span >★★★★★★</span></h3>
+        <button>Buy Now</button>
+      </div>
+     
+        
+        </div>
+    </div>
+  </div> -->
+  
+<div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title h6 text-xs-center" id="myModalLabel"><i class="material-icons"></i>Product successfully added to your shopping cart</h4>
+
+        <div class="cross">x</div>
+
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 divide-right">
+            <div class="row">
+              <div class="col-md-6">
+									<img class="product-image" src="http://ps.magentech.com/themes/sp_metro/437-home_default/ligula-tortoram-labore-dolore.jpg" alt="" title="" itemprop="image">
+				              </div>
+              <div class="col-md-6">
+                <h6 class="h6 product-name">Ligula tortoram labore dolore incadi tente</h6>
+                <p>$99.00</p>
+                
+                                  <p><strong>Color</strong>: Grey </p>
+                                  <p><strong>Size</strong>: S</p>
+                                <p><strong>Quantity:</strong>&nbsp;17</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="cart-content">
+                              <p class="cart-products-count">There are 18 items in your cart.</p>
+                            <p><strong>Total products:</strong>&nbsp;$1,788.00</p>
+              <p><strong>Total shipping:</strong>&nbsp;$7.00 </p>
+                            	<p><strong>Taxes</strong>&nbsp;$0.00</p>
+                            <p><strong>Total:</strong>&nbsp;$1,795.00 (tax excl.)</p>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue shopping</button>
+              <a href="http://ps.magentech.com/themes/sp_metro/en/cart?action=show" class="btn btn-primary"><i class="material-icons"></i>proceed to checkout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script>
+
+// const obj = {a: "apple"};
+//  ({x : obj['a'] } = {x: "orange"})
+// console.log(obj.a)
+// console.log(obj)
+
+    var obj = {a: 'apple'};
+
+    ({ x : obj['a'] } =  {x : 'orange'});
+    console.log(obj.a);
+  </script>
+  
+</body>
+</html>

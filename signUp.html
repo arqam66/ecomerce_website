@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="SignupContainer">
+        <div class="first-heading">
+            <h1>Sign Up</h1>
+            <p>Create an account so you can order your <br> favourite product easily and quickly.</p>
+        </div>
+        <div class="second-inputs">
+            <input type="text" placeholder="Name" id="userName" required>
+            <input type="text" placeholder="City" id="userCity" required>
+            <input type="email" placeholder="Email" id="userEmail" required>
+            <input type="number" placeholder="Phone Number" id="userPhone" required>
+            <input type="password" placeholder="Password" id="userPassword" required>
+        </div>
+        <div class="third-butons">
+            <button onclick="signupDataStore()">Sign Up</button>
+        </div>
+        <div class="last-but">
+            <button class="f">Login With facebook</button>
+            <button class="g">Login With Gmail</button>
+            <p>Already have an account? <a href="./login.html">Login</a></p>
+        </div>
+    </div>
+    
+
+  
+    <script src="./app.js"></script>
+</body>
+</html>

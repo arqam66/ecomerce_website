@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script
+      src="https://kit.fontawesome.com/7e4bb5f098.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+
+     
+      .chart-container {
+        width: 100%;
+       
+      }
+
+      body{
+        background: #cbdee641;
+      }
+
+      canvas {
+        max-width: 100%;
+      }
+      .charts{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 60px;
+        
+
+      }
+      .chart{
+        width: 47%;
+        /* height: 500px; */
+        background: rgb(255, 255, 255);
+      
+       
+       padding: 20px;
+       border-radius: 10px;
+       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .chart p {
+        padding-bottom: 20px;
+        padding-top: 10px;
+      }
+
+      .content-area>h1{
+        /* text-align: center; */
+        padding-block: 20px;
+        font-size: 3rem;
+      }
+
+       /* Small Mobile Styles */
+@media only screen and (max-width: 480px) {
+
+    .content-area{
+        /* padding: 10px; */
+        padding-block: 70px 30px;
+        padding-inline: 20px;
+    }
+    .chart{
+        width: 100%;
+    }
+}
+#Serching::placeholder{
+  color: white;
+}
+.hide{
+
+  font-size: 1.7rem;
+}
+    </style>
+  </head>
+  <body>
+    <div class="header" id="dash_header">
+      <img src="./assets/asset 0.png" alt="" />
+
+      <div class="searchbar">
+        <input
+          type="text"
+          onkeyup="(filterUserOrders())"
+          id="Serching"
+          placeholder="Search here...."
+        />
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      </div>
+      <div class="settings">
+        <i
+          class="fa-solid fa-sun"
+          id="theme_icon"
+          onclick="themeChanged()"
+          aria-hidden="true"
+        ></i>
+        <i id="main" class="fa-solid fa-grip" aria-hidden="true"></i>
+        <!-- <i id="down" class="fa-solid fa-grip" aria-hidden="true"></i> -->
+        <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+        <i class="fa-solid fa-bell" aria-hidden="true"></i>
+        <div class="admin">
+          <img src="./assets/asset 53.png" alt="" />
+        </div>
+      </div>
+
+      <div class="mobileNav">
+        <i class="fa-solid fa-bars"></i>
+        
+      </div>
+
+      <ul class="navbar-menu">
+        <span onclick="hide()" class="hide"><i class="fa-solid fa-xmark"></i></span>
+        <li>
+          <a href="javascript:void(0)" onclick="showDashboard()" id="dashboard"
+            >Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="javascript:void(0)" onclick="showUsers()" id="users"
+            >Users</a
+          >
+        </li>
+        <li>
+          <a href="javascript:void(0)" onclick="showOrders()" id="orders"
+            >Orders</a
+          >
+        </li>
+        <li>
+          <a href="javascript:void(0)" onclick="showProducts()" id="orders"
+            >Products</a
+          >
+        </li>
+        <li><a href="./signUp.html">SignUp</a></li>
+        <li><a href="./login.html">Login</a></li>
+        <li><a href="./index.html">Home</a></li>
+      </ul>
+    </div>
+
+    <div class="dashboard-container">
+      <div class="left-sidebar">
+        <div class="sidebar-links">
+          <ul>
+            <li>
+              <a
+                href="javascript:void(0)"
+                onclick="showDashboard()"
+                id="dashboard"
+                >Dashboard</a
+              >
+            </li>
+            <li>
+              <a href="javascript:void(0)" onclick="showUsers()" id="users"
+                >Users</a
+              >
+            </li>
+            <li>
+              <a href="javascript:void(0)" onclick="showOrders()" id="orders"
+                >Orders</a
+              >
+            </li>
+            <li>
+              <a href="javascript:void(0)" onclick="showProducts()" id="orders"
+                >Products</a
+              >
+            </li>
+            <li><a href="./signUp.html">SignUp</a></li>
+            <li><a href="./login.html">Login</a></li>
+            <li><a href="./index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="right-content">
+        <!-- <div class="top-bar">
+
+                <div class="user-profile flex">
+                    <div class="user-profile-img">
+                        <img src="./assets/asset 53.png" alt="User Profile">
+                    </div>
+                    <span>admin@gmail.com</span>
+                </div>
+                <div class="search-bar">
+        
+                    <input type="search" placeholder="Search...">
+
+                </div>
+
+            </div> -->
+
+        <div class="content-area">
+          <h1>Dashboard</h1>
+
+          <div class="charts">
+
+            <!-- //1 -->
+            <div class="chart">
+              <h3>Line Chart</h3>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                
+              </p>
+              <!-- Chart Container -->
+              <div class="chart-container">
+                <canvas id="myLineChart"></canvas>
+              </div>
+            </div>
+
+            <!-- //2 -->
+            <div class="chart">
+              <h3>Bar Chart</h3>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                
+              </p>
+              <!-- Chart Container -->
+              <div class="chart-container">
+                <canvas id="myBarChart"></canvas>
+              </div>
+            </div>
+
+            <!-- //3 -->
+            <div class="chart">
+              <h3>Doughnut Chart</h3>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                
+              </p>
+              <!-- Chart Container -->
+              <div class="chart-container">
+                <canvas id="myDoughnutChart"></canvas>
+              </div>
+            </div>
+
+            <!-- //4 -->
+            <div class="chart">
+              <h3>Pie Chart</h3>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                
+              </p>
+              <!-- Chart Container -->
+              <div class="chart-container">
+                <canvas id="myPieChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="footer">
+                <p>&copy; 2024 Ecommerce Website. All rights reserved.</p>
+            </div> -->
+      </div>
+    </div>
+
+    <!-- --------- product-box ---------  -->
+    <div class="product-box none">
+      <h2>
+        Add New Product
+        <div class="cancle" onclick="addProductcancel()">X</div>
+      </h2>
+      <form action="#" method="post">
+        <label for="product-name">Product Name</label>
+        <input
+          type="text"
+          id="product-name"
+          name="product-name"
+          placeholder="Enter product name"
+          required
+        />
+
+        <label for="product-description">Description</label>
+        <textarea
+          id="product-description"
+          name="product-description"
+          placeholder="Enter product description"
+          rows="4"
+          required
+        ></textarea>
+
+        <label for="product-price">Price</label>
+        <input
+          type="number"
+          id="product-price"
+          name="product-price"
+          placeholder="Enter product price"
+          required
+        />
+
+        <label for="product-category">Category</label>
+        <select id="product-category" name="product-category" required>
+          <option value="">Select Category</option>
+          <option value="electronics">Electronics</option>
+          <option value="fashion">Fashion</option>
+          <option value="home">Home & Living</option>
+          <option value="beauty">Beauty</option>
+          <option value="sports">Sports</option>
+        </select>
+
+        <label>Product Image</label>
+        <div class="image-upload">
+          <input
+            type="file"
+            id="product-image"
+            name="product-image"
+            accept="image/jpeg, image/png, image/jpg"
+          />
+          <!-- <p>Click to upload an image</p> -->
+          <label for="product-image">Click to upload an image</label>
+        </div>
+
+        <button type="button" onclick="addProduct()">Add Product</button>
+      </form>
+    </div>
+
+    <!-- ----------- editProductBox ------------ -->
+    <div class="editProductBox none">
+      <!-- <div class="product-image">
+          <img src="https://via.placeholder.com/150" alt="Product Image">
+        </div>
+        <div class="product-details">
+          <form>
+            <label for="product-name">Product Name:</label>
+            <input type="text" id="product-name" name="product-name" value="Sample Product">
+    
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="3">This is a sample product description.</textarea>
+    
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" value="50.00" step="0.01">
+    
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" name="stock" value="100">
+    
+            <button type="submit">Save</button>
+          </form>
+        </div> -->
+    </div>
+
+    <div class="shadow none"></div>
+
+    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
+    <script>
+      var line = document.getElementById("myLineChart").getContext("2d");
+
+      var myLineChart = new Chart(line, {
+        type: "line", // Line Chart Type
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          datasets: [
+            {
+              label: "Monthly Sales",
+              data: [10, 25, 15, 30, 20, 35], // Y-axis values
+              borderColor: "rgba(54, 162, 235, 1)", // Line color
+              backgroundColor: "rgba(54, 162, 235, 0.2)", // Area fill color
+              borderWidth: 2,
+              pointBackgroundColor: "red", // Data points color
+              pointRadius: 5, // Size of data points
+              fill: true, // Fill the area under line
+              tension: 0.3, // Line smoothness
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "top",
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      var bar = document.getElementById('myBarChart');
+
+var myBarChart = new Chart(bar, {
+    type: 'bar',  // Bar Chart Type
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+            label: 'Monthly Sales',
+            data: [10, 25, 15, 30, 20, 35], // Y-axis values
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+var doughnut = document.getElementById("myDoughnutChart").getContext("2d");
+
+var myDoughnutChart = new Chart(doughnut, {
+  type: "doughnut", // Doughnut Chart Type
+  data: {
+    labels: ["Red", "Blue", "Yellow"],
+    datasets: [
+      {
+        label: "Votes",
+        data: [12, 19, 3], // Values
+        backgroundColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          
+        ],
+        borderWidth: 2,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom", // Legend position
+      },
+    },
+  },
+});
+
+
+var pie = document.getElementById('myPieChart').getContext('2d');
+
+var myPieChart = new Chart(pie, {
+    type: 'pie',  // Pie Chart Type
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: 'Color Distribution',
+            data: [12, 19, 3, 5, 2, 8], // Pie chart values
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            }
+        }
+    }
+});
+    </script>
+  </body>
+</html>
+
+<!-- 
+    Yeh raha HTML aur CSS code dashboard activities ke liye:
+
+HTML:
+
+
+<div class="dashboard-activities">
+    <h2>Dashboard Activities</h2>
+    <div class="activity-cards">
+        <div class="activity-card">
+            <i class="fa fa-shopping-cart"></i>
+            <h3>New Orders</h3>
+            <p>10 new orders received today</p>
+        </div>
+        <div class="activity-card">
+            <i class="fa fa-user-plus"></i>
+            <h3>New Users</h3>
+            <p>5 new users registered today</p>
+        </div>
+        <div class="activity-card">
+            <i class="fa fa-dollar-sign"></i>
+            <h3>Total Sales</h3>
+            <p>$1000 sales generated today</p>
+        </div>
+        <div class="activity-card">
+            <i class="fa fa-product-hunt"></i>
+            <h3>New Products</h3>
+            <p>10 new products added today</p>
+        </div>
+    </div>
+    <div class="activity-graph">
+        <h3>Sales Graph</h3>
+        <canvas id="sales-graph"></canvas>
+    </div>
+</div>
+
+
+CSS:
+
+
+.dashboard-activities {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.activity-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.activity-card {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    width: calc(25% - 20px);
+}
+
+.activity-card i {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.activity-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.activity-graph {
+    margin-top: 20px;
+}
+
+#sales-graph {
+    width: 100%;
+    height: 200px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+Yeh code aapke dashboard par activities display karne ke liye hai. Aap is code ko apne dashboard HTML file mein add kar sakte hain.
+    -->
+
+<!-- 
+    /
+ -->

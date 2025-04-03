@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        /* 
+        <div class="content-area">
+
+             
+
+                <!-- fOR user  -->
+<!--                 
+                <h2>Selected Link Heading</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>johndoe@example.com</td>
+                        </tr>
+                    </tbody>
+                </table> -->
+
+
+                <!-- for orders  -->
+                <!-- <h2>Orders</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#1</td>
+                            <td>Nov 17, 2024</td>
+                            <td>johndoe@example.com</td>
+                            <td>4</td>
+                            <td>89000</td>
+                        </tr>
+                    </tbody>
+                </table> -->
+
+
+                <!-- for dashboard  -->
+                <div class="dashboard-activities">
+                    <h1>Dashboard Activities</h1>
+                    <div class="activity-cards">
+                        <div class="activity-card">
+                            <i class="fa fa-shopping-cart"></i>
+                            <h3>New Orders</h3>
+                            <p>10 new orders received today</p>
+                        </div>
+                        <div class="activity-card">
+                            <i class="fa fa-user-plus"></i>
+                            <h3>New Users</h3>
+                            <p>5 new users registered today</p>
+                        </div>
+                        <div class="activity-card">
+                            <i class="fa fa-dollar-sign"></i>
+                            <h3>Total Sales</h3>
+                            <p>$1000 sales generated today</p>
+                        </div>
+                        <div class="activity-card">
+                            <i class="fa fa-product-hunt"></i>
+                            <h3>New Products</h3>
+                            <p>10 new products added today</p>
+                        </div>
+                    </div>
+                    <div class="activity-graph">
+                        <h3>Sales Graph</h3>
+                        <!-- <img src="./assets/graph.png" alt=""> -->
+                        <div id="sales-graph">
+                            <img src="./assets/graph.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>*/
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 20px;
+      }
+
+      h2 {
+        color: #333;
+      }
+
+      .chart-container {
+        width: 50%;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      canvas {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <canvas id="Chart"></canvas>
+    </div>
+
+    <h2>Doughnut Chart Example</h2>
+
+    <!-- Chart Container -->
+    <div class="chart-container">
+      <canvas id="myDoughnutChart"></canvas>
+    </div>
+
+    <h2>Line Example</h2>
+
+    <!-- Chart Container -->
+    <div class="chart-container">
+      <canvas id="line"></canvas>
+    </div>
+
+    <h2>Line Chart Example</h2>
+    
+    <!-- Chart Container -->
+    <div class="chart-container">
+        <canvas id="myLineChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const ctx = document.getElementById("Chart");
+
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      var ct = document.getElementById("myDoughnutChart").getContext("2d");
+
+      var myDoughnutChart = new Chart(ct, {
+        type: "doughnut", // Doughnut Chart Type
+        data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple"],
+          datasets: [
+            {
+              label: "Votes",
+              data: [12, 19, 3, 5, 8], // Values
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.7)",
+                "rgba(54, 162, 235, 0.7)",
+                "rgba(255, 206, 86, 0.7)",
+                "rgba(75, 192, 192, 0.7)",
+                "rgba(153, 102, 255, 0.7)",
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+              ],
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "bottom", // Legend position
+            },
+          },
+        },
+      });
+
+      var abc = document.getElementById("line").getContext("2d");
+
+      var line = document.getElementById('myLineChart').getContext('2d');
+
+var myLineChart = new Chart(line, {
+    type: 'line',  // Line Chart Type
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+            label: 'Monthly Sales',
+            data: [10, 25, 15, 30, 20, 35], // Y-axis values
+            borderColor: 'rgba(54, 162, 235, 1)', // Line color
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Area fill color
+            borderWidth: 2,
+            pointBackgroundColor: 'red', // Data points color
+            pointRadius: 5, // Size of data points
+            fill: true, // Fill the area under line
+            tension: 0.3 // Line smoothness
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+
+    </script>
+  </body>
+</html>
